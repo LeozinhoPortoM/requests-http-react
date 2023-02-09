@@ -10,13 +10,21 @@ export const useFetch = (url) => {
   const httpConfig = (data, method) => {
     if (method === "POST") {
       setConfig({
-        method,
+        method: "POST",
         headers: {
-          "Content-Type": "appication/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
-      setMethod(method);
+      setMethod("POST");
+    } else if (method === "Delete") {
+      setConfig({
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      setMethod("DELETE");
     }
   };
 
