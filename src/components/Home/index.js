@@ -17,7 +17,7 @@ export default function Home() {
   const [values, setValues] = useState({ ...initialState });
   const [products, setProducts] = useState([]);
 
-  const { data: items, httpConfig } = useFetch(baseUrl);
+  const { data: items, httpConfig, loading } = useFetch(baseUrl);
 
   const handleClear = () => {
     setValues(initialState);
@@ -43,6 +43,9 @@ export default function Home() {
   return (
     <div className="App">
       <h1>Lista de produtos</h1>
+      <div className="container-loader">
+        {loading && <div className="loader"></div>}
+      </div>
       <div className="container">
         {items &&
           items.map((product) => <Card key={product.id} product={product} />)}
