@@ -27,8 +27,9 @@
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  border: 1px solid #e5e5e5;
+  border: 1px solid transparent;
   border-top-color: #51d4db;
+  display: block;
 }
 
 @keyframes is-rotating{

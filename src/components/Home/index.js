@@ -44,7 +44,7 @@ export default function Home() {
     <div className="App">
       <h1>Lista de produtos</h1>
       <div className="container-loader">
-        {loading && <div className="loader"></div>}
+        {loading && <span className="loader"></span>}
       </div>
       <div className="container">
         {items &&
