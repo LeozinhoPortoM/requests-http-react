@@ -36,16 +36,6 @@ export default function Home() {
     const product = values;
 
     httpConfig(product, "POST");
-    // const res = await fetch(baseUrl, {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(product),
-    // });
-
-    // const addedProduct = await res.json();
-    // setProducts((prevProducts) => [...prevProducts, addedProduct]);
 
     handleClear();
   };
