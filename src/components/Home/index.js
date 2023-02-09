@@ -1,7 +1,10 @@
-import { useEffect, useState } from "react";
+import "./style.css";
+
+import { useState } from "react";
+
+import { useFetch } from "../../hooks/useFetch";
 import Card from "../Card";
 import Form from "../Form";
-import "./style.css";
 
 const baseUrl = "http://localhost:3000/products";
 
@@ -14,14 +17,7 @@ export default function Home() {
   const [values, setValues] = useState({ ...initialState });
   const [products, setProducts] = useState([]);
 
-  useEffect(() => {
-    async function fetchData() {
-      const res = await fetch(baseUrl);
-      const data = await res.json();
-      setProducts(data);
-    }
-    fetchData();
-  }, []);
+  const { data: items, httpConfig } = useFetch(baseUrl);
 
   const handleClear = () => {
     setValues(initialState);
@@ -39,16 +35,17 @@ export default function Home() {
 
     const product = values;
 
-    const res = await fetch(baseUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(product),
-    });
+    httpConfig(product, "POST");
+    // const res = await fetch(baseUrl, {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(product),
+    // });
 
-    const addedProduct = await res.json();
-    setProducts((prevProducts) => [...prevProducts, addedProduct]);
+    // const addedProduct = await res.json();
+    // setProducts((prevProducts) => [...prevProducts, addedProduct]);
 
     handleClear();
   };
@@ -57,9 +54,8 @@ export default function Home() {
     <div className="App">
       <h1>Lista de produtos</h1>
       <div className="container">
-        {products.map((product) => (
-          <Card key={product.id} product={product} />
-        ))}
+        {items &&
+          items.map((product) => <Card key={product.id} product={product} />)}
       </div>
       <div className="add-product">
         <Form
