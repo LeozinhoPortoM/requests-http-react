@@ -9,6 +9,11 @@
   gap: 10px;
 }
 
+.container:hover > :not(:hover) {
+  opacity: .4;
+  transform: scale(0.9);
+}
+
 .add-product{
   display: flex;
   flex-direction: column;
