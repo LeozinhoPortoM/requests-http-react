@@ -23,7 +23,7 @@ export default function Form({ values, handleChangeValue, handleSave }) {
             onChange={handleChangeValue}
           />
         </label>
-        <input type="submit" value="Salvar" />
+        <button type="submit">Salvar</button>
       </form>
     </fieldset>
   );
