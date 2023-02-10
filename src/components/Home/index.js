@@ -15,7 +15,6 @@ const initialState = {
 
 export default function Home() {
   const [values, setValues] = useState({ ...initialState });
-  const [products, setProducts] = useState([]);
 
   const { data: items, httpConfig, loading } = useFetch(baseUrl);
 
@@ -33,10 +32,15 @@ export default function Home() {
   const handleSave = async (e) => {
     e.preventDefault();
 
-    const product = values;
+    const item = values;
 
-    httpConfig(product, "POST");
+    httpConfig(item, "POST");
 
+    handleClear();
+  };
+
+  const handleRemove = (id) => {
+    httpConfig(id, "DELETE");
     handleClear();
   };
 
@@ -48,7 +52,13 @@ export default function Home() {
       </div>
       <div className="container">
         {items &&
-          items.map((product) => <Card key={product.id} product={product} />)}
+          items.map((product) => (
+            <Card
+              key={product.id}
+              product={product}
+              handleRemove={handleRemove}
+            />
+          ))}
       </div>
       <div className="add-product">
         <Form
