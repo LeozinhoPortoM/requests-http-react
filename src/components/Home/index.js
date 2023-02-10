@@ -1,5 +1,8 @@
 import "./style.css";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import { useState } from "react";
 
 import { useFetch } from "../../hooks/useFetch";
@@ -46,6 +49,7 @@ export default function Home() {
 
   return (
     <div className="App">
+      <ToastContainer />
       <h1>Lista de produtos</h1>
       <div className="container-loader">
         {loading && <span className="loader"></span>}
